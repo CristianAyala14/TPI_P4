@@ -2,8 +2,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import type { Usuario } from "../types/usuario";
 import { obtenerUsuarioActual } from "../services/auth";
+import type { Usuario } from "../types/usuario";
 
 interface AuthState {
   usuario: Usuario | null;
@@ -24,9 +24,12 @@ export const useAuthStore = create<AuthState>()(
       verificado: false,
       sesionPrevia: false,
 
-      // VERIFICAR COOKIE CON FASTAPI
+      // VERIFICAR LA SESIÓN CON FASTAPI
       checkSession: async () => {
-        set({ comprobando: true });
+        set({
+          comprobando: true,
+          verificado: false,
+        });
 
         try {
           const usuario = await obtenerUsuarioActual();
@@ -47,7 +50,7 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
-      // GUARDAR USUARIO AUTENTICADO
+      // LOGIN EXITOSO
       setUsuario: (usuario) => {
         set({
           usuario,
@@ -57,7 +60,7 @@ export const useAuthStore = create<AuthState>()(
         });
       },
 
-      // LIMPIAR SESIÓN LOCAL
+      // LOGOUT O SESIÓN INVÁLIDA
       limpiarSesion: () => {
         set({
           usuario: null,
@@ -70,10 +73,10 @@ export const useAuthStore = create<AuthState>()(
     {
       name: "food-store-auth",
 
-      // No persistir JWT ni datos personales.
-      // Solo recordamos si existió una sesión.
+      // Persistir solo datos públicos del usuario.
+      // Nunca el JWT ni la contraseña.
       partialize: (state) => ({
-        sesionPrevia: state.sesionPrevia,
+        usuario: state.usuario,
       }),
     }
   )

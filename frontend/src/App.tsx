@@ -19,7 +19,8 @@ import RutaAdmin from "./components/RutaAdmin";
 import AdminCategorias from "./pages/AdminCategorias";
 import AdminPedidos from "./pages/AdminPedidos";
 import AdminUsuarios from "./pages/AdminUsuarios";
-
+import Carrito from "./pages/Carrito";
+import Unauthorized from "./pages/Unauthorized";
 
 function App() {
 
@@ -69,6 +70,15 @@ function App() {
                 <AdminUsuarios />
               </RutaAdmin>
             }
+          />
+          <Route
+            path="/carrito"
+            element={<Carrito />}
+          />
+
+          <Route
+            path="/unauthorized"
+            element={<Unauthorized />}
           />
           <Route
             path="*"

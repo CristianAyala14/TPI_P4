@@ -2,6 +2,12 @@
 
 **Materia:** Programación IV - Tecnicatura Universitaria en Programación (UTN)
 
+## Link al repositorio: 
+https://github.com/CristianAyala14/TPI_P4.git
+
+## Link al video: 
+
+
 ## Descripción
 
 Food Store es una aplicación web para la gestión de pedidos de comida. Permite registrar usuarios, consultar productos, administrar un carrito y realizar pedidos. Incluye un panel administrativo para gestionar productos, categorías, stock, pedidos y usuarios.

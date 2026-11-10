@@ -1,7 +1,6 @@
 
 import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-
 import { useAuthStore } from "../store/authStore";
 
 interface Props {
@@ -17,24 +16,35 @@ export default function RutaAdmin({ children }: Props) {
     (state) => state.verificado
   );
 
+  const comprobando = useAuthStore(
+    (state) => state.comprobando
+  );
+
   // ESPERAR VERIFICACIÓN DE SESIÓN
-  if (!verificado) {
+  if (!verificado || comprobando) {
     return (
-      <p className="p-10 text-center text-slate-400">
-        Verificando permisos...
-      </p>
+      <main className="flex min-h-[70vh] items-center justify-center">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-slate-700 border-t-orange-500" />
+
+          <p className="text-slate-400">
+            Verificando permisos...
+          </p>
+        </div>
+      </main>
     );
   }
 
-  // SIN SESIÓN
+  // SIN AUTENTICACIÓN
   if (!usuario) {
     return <Navigate to="/login" replace />;
   }
 
-  // SIN PERMISOS ADMIN
+  // AUTENTICADO, PERO SIN ROL ADMIN
   if (usuario.role !== "admin") {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/unauthorized" replace />;
   }
 
+  // ADMINISTRADOR AUTORIZADO
   return <>{children}</>;
 }
