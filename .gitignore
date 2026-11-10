@@ -1,0 +1,83 @@
+# ===================================
+# PYTHON / BACKEND
+# ===================================
+
+backend/.venv/
+backend/venv/
+backend/env/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# ===================================
+# NODE / FRONTEND Y BACKEND
+# ===================================
+
+**/node_modules/
+**/dist/
+**/build/
+**/.vite/
+**/coverage/
+**/.turbo/
+*.tsbuildinfo
+
+# ===================================
+# VARIABLES DE ENTORNO
+# ===================================
+
+.env
+.env.*
+**/.env
+**/.env.*
+
+!.env.example
+!**/.env.example
+
+# ===================================
+# BASES DE DATOS LOCALES
+# ===================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# ===================================
+# LOGS
+# ===================================
+
+*.log
+logs/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# ===================================
+# SISTEMA OPERATIVO
+# ===================================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===================================
+# EDITORES
+# ===================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===================================
+# ARCHIVOS TEMPORALES
+# ===================================
+
+*.tmp
+*.temp
+*.bak
+~$*
